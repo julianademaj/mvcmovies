@@ -1,0 +1,48 @@
+﻿@model Vidly.Models.Customer
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(c => c.Name)
+        @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.MembershipType.Id)
+        @Html.TextBoxFor(c => c.MembershipType.Id, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.MembershipType.Id)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.IsSubscribedToNewsletter)
+        @Html.TextBoxFor(c => c.IsSubscribedToNewsletter, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.IsSubscribedToNewsletter)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Birthdate)
+        @Html.TextBoxFor(c => c.Birthdate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Birthdate)
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+
+
+
+}
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

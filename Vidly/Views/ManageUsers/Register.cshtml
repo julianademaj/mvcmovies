@@ -1,0 +1,110 @@
+﻿@model  Vidly.ViewModels.UsersWithRoles
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+@using (Html.BeginForm("Index", "ManageUsers", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(m => m.RegisterUser.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.RegisterUser.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m=> m.RegisterUser.Email)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RegisterUser.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.RegisterUser.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.RegisterUser.Password)
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RegisterUser.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.RegisterUser.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.RegisterUser.ConfirmPassword)
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RegisterUser.DrivingLicense, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.RegisterUser.DrivingLicense, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.RegisterUser.DrivingLicense)
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RegisterUser.Phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.RegisterUser.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.RegisterUser.Phone)
+
+        </div>
+    </div>
+    <div class="form-group" style="margin-left :0.5rem;  ">
+        @Html.LabelFor(m => m.Roles, new { @class = "col-md-2 control-label" })
+        @Html.DropDownListFor(m => m.RoleId, new SelectList(Model.Roles, "Id", "Name"), "Select Role", new { @class = "form-control" }  )
+        @Html.ValidationMessageFor(m => m.Roles)
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>
+}
+
+
+@*<table id="UserTable" class="table table-bordered table-hover" style="margin-top: 2rem">
+    <thead>
+        <tr>
+            <th>Users</th>
+            <th>Roles</th>
+            <th>Driving License</th>
+            <th>Phone Number</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+
+    @foreach (var user in Model.Users)
+    {
+        var appUser = user.User;
+        var roles = user.UserRoles;
+        var roleId = user.RoleId;
+        var userid = appUser.Id;
+
+        <tr>
+            <td>
+                @Html.ActionLink(appUser.UserName, "AssignRole", new { id = appUser.Id }, null)
+            </td>
+            <td>
+                @string.Join(",", roles)
+            </td>
+            <td>
+                @appUser.DrivingLicense
+            </td>
+            <td>
+                @appUser.Phone
+
+            </td>
+            <td>
+
+                @Html.ActionLink("Delete", "Delete", "ManageUsers", new { id = appUser.Id }, null)
+
+            </td>
+        </tr>
+
+    }
+</table>*@
+
+
+
